@@ -2,12 +2,11 @@ const browserify = require('browserify');
 var serveStatic = require('serve-static')
 const fs = require('fs');
 const express = require('express');
-const fetch = require('node-fetch');
+const request = require('request');
 const app = express();
 const  http = require('http').Server(app);
 let io = require('socket.io')(http);
 const config = require('./src/config');
-
 
 var b = browserify();
 b.add('./src/main.js');
@@ -42,13 +41,14 @@ http.listen(5000);
 
 let updateTile = (tile) => {
   let url = tile.url;
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => { 
-      tile.data = data;
-      io.emit('update_tile', tile)
-    })
-
+  request.get({
+    url,
+    rejectUnauthorized: false,
+  }, function(error, response, body) { 
+    let data = JSON.parse(body)
+    tile.data = data;
+    io.emit('update_tile', tile)
+  })
 }
 
 let all_tiles = config.dashboards.map(d => d.tiles).reduce((a,b) => a.concat(b),[])

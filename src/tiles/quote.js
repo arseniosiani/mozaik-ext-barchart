@@ -8,18 +8,28 @@ module.exports = {
   },
   
   onData(t) {
-    this.el.append("div")
+    this.el.selectAll('.quote')
+      .remove().exit()
+      .data([t.data.txt])
+      .enter()
+      .append("div")
+      .attr('class', 'quote')
       .style('color', '#eedba5')
-      .style('padding', '1.2vmin')
-      .style('font-size', '4vmin')
-      .html(t.data.quote || "");
+      .style('padding', '1vmin')
+      .style('font-size', '3vmin')
+      .html(t.data.txt || "");
 
-    this.el.append("div")
+    this.el.selectAll('.author')
+      .remove().exit()
+      .data([t.data.txt])
+      .enter()
+      .append("div")
+      .attr('class', 'author')
       .style('color', '#eedba5')
-      .style('padding', '1.2vmin')
+      .style('padding', '1vmin')
       .style('font-size', '2vmin')
       .style('text-align', 'right')
-      .html("~" + t.data.author + "~");
+      .html("~" + t.data.auth + "~");
   }
 
 }

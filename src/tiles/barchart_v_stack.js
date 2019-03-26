@@ -8,7 +8,7 @@ module.exports = {
     let width = (500 * t.cols) * 1.77;
     let height = (500 * t.rows);
 
-    let style = ".bar{fill: steelblue;} text.values,.text_legend{fill:#eedba5;font-size:20px} .tick{fill:#eedba5;font-size:20px}";
+    let style = ".bar{fill: steelblue;} text.values,.text_legend{fill:#eedba5;font-size:30px} .tick{fill:#eedba5;font-size:30px}";
     let el = d3.select("#" + this.id);
     this.svg = el.append('svg')
       .attr("viewBox", "0 0 " + width + " " + height)
@@ -37,7 +37,7 @@ module.exports = {
       .keys(keys)
       .offset(d3.stackOffsetDiverging)(data);
 
-    let margin = { t: 20, l: 50, r: 20, b: 20 };
+    let margin = { t: 20, l: 50, r: 20, b: 50 };
 
     var x = d3.scaleBand()
       .domain(data.map(d => d.label))

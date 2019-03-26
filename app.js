@@ -16,6 +16,13 @@ b.bundle().pipe(fs.createWriteStream('./dist/main.js'));
 
 io.on('connection', function (socket) {
   console.log('a user connected');
+  all_tiles.forEach(t => {
+    if (t.data)
+      io.emit('update_tile', t)
+  });
+  setInterval(() => {
+    socket.emit('ping')
+  }, 10000);
 });
 
 app.get('/', function(req, res){
@@ -54,6 +61,7 @@ let all_tiles = config.dashboards.map(d => d.tiles).reduce((a,b) => a.concat(b),
 let polling = {};
 all_tiles.forEach(t => {
   if (t.url) {
+    console.log("polling for " + t.id);
     let poll_rate = t.poll_rate || 60000;
     polling[t.id] = setInterval(updateTile, poll_rate, t);
     updateTile(t);

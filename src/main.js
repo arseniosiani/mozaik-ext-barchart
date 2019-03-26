@@ -13,6 +13,8 @@ require('./tiles/barchart_v_stack')
 require('./tiles/value')
 require('./tiles/value_multi')
 require('./tiles/rings')
+require('./tiles/list')
+require('./tiles/list_lights')
 
 let socket = require('socket.io-client')();
 
@@ -61,7 +63,7 @@ config.dashboards.forEach(d => {
 var t = d3.transition()
   .duration(1000)
   .ease(d3.easeLinear);
-let current_dashboard = 0;
+let current_dashboard = -1;
 let cicle_dashboards = () => { 
   app.selectAll('.dashboard_' + current_dashboard).transition(t).style('opacity', 0)
   current_dashboard = (current_dashboard+1) % config.dashboards.length;

@@ -15,7 +15,6 @@ b.bundle().pipe(fs.createWriteStream('./dist/main.js'));
 
 
 io.on('connection', function (socket) {
-  console.log('a user connected');
   all_tiles.forEach(t => {
     if (t.data)
       io.emit('update_tile', t)
@@ -39,15 +38,10 @@ app.post('/push/:tile_id', function (req, res) {
 app.use(serveStatic('./dist'));
 app.use(express.json());
 
-http.listen(5000, function () {
-  console.log('Example app listening on port 3000!');
-});
-
-
+http.listen(5000);
 
 let updateTile = (tile) => {
   let url = tile.url;
-  console.log("request for " + tile.url);
   fetch(url)
     .then((res) => res.json())
     .then((data) => { 
@@ -61,7 +55,6 @@ let all_tiles = config.dashboards.map(d => d.tiles).reduce((a,b) => a.concat(b),
 let polling = {};
 all_tiles.forEach(t => {
   if (t.url) {
-    console.log("polling for " + t.id);
     let poll_rate = t.poll_rate || 60000;
     polling[t.id] = setInterval(updateTile, poll_rate, t);
     updateTile(t);

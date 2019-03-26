@@ -1,0 +1,76 @@
+.tile {
+  position: absolute;
+  box-sizing: border-box;
+  padding: 0.5vmin;
+  background-color: #002b36;
+}
+.tile_container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #2b3847;
+  border-radius: 2px;
+  
+  box-shadow: 0 1px 1px rgba(0,0,0,0.35);
+  border: none;
+}
+.tile_header {
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  font: normal normal 400 3vmin "Montserrat", sans-serif;
+  height: 6vmin;
+  line-height: 6vmin;
+  border-radius: 2px 2px 0 0;
+  padding: 0 2vmin;
+  background-color: #323f53;
+  color: #eedba5;
+  border-bottom: 1px solid #253246;
+  box-shadow: 0 1px 0 #495b71 inset;
+  white-space: pre;
+}
+
+.tile_body {
+  position: absolute;
+  top: 6vmin;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  font: normal normal 400 3vmin "Montserrat", sans-serif;
+  color: #eedba5;
+  overflow: hidden;
+}
+.dashboard {
+  background-color: #002b36;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+ul {
+  list-style-type: none;
+  margin:0;
+  padding: 0;
+}
+
+li.item {
+  padding: 1vmin;
+}
+
+/* .svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%; /* aspect ratio 
+    vertical-align: top;
+    overflow: hidden;
+} 
+/* .svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+} */
+
+

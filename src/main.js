@@ -1,9 +1,8 @@
 
 const d3 = require('d3');
-const config = require('./config');
+const config = require('./config.json');
 const themes = require('./themes');
 const theme = themes['default'];
-
 
 require('./tiles/text')
 require('./tiles/gauge')
